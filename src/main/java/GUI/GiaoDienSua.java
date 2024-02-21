@@ -24,7 +24,6 @@ public class GiaoDienSua extends javax.swing.JFrame {
         initComponents();
         courseinstructorBLL = new CourseinstructorBLL();
         this.setLocationRelativeTo(null);
-//        jComboBox1 = null;
 //        jComboBox1 = new JComboBox<CourseDTO>(courseinstructorBLL.getAllCourse());
 //        combobox2 = courseinstructorBLL.getAllPerson();
 //        combobox3 = courseinstructorBLL.getAllDepartment();

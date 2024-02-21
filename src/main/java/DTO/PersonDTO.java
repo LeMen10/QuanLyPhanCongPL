@@ -4,15 +4,14 @@
  */
 package DTO;
 
-
 /**
  *
  * @author menvo
  */
-public class CourseinstructorDTO {
+public class PersonDTO {
     private int PersonID;
-    private int CourseID;
-    private int DepartmentID;
+    private String Lastname;
+    private String FirstName;
 
     /**
      * @return the PersonID
@@ -29,30 +28,31 @@ public class CourseinstructorDTO {
     }
 
     /**
-     * @return the CourseID
+     * @return the Lastname
      */
-    public int getCourseID() {
-        return CourseID;
+    public String getLastname() {
+        return Lastname;
     }
 
     /**
-     * @param CourseID the CourseID to set
+     * @param Lastname the Lastname to set
      */
-    public void setCourseID(int CourseID) {
-        this.CourseID = CourseID;
+    public void setLastname(String Lastname) {
+        this.Lastname = Lastname;
     }
 
     /**
-     * @return the DepartmentID
+     * @return the FirstName
      */
-    public int getDepartmentID() {
-        return DepartmentID;
+    public String getFirstName() {
+        return FirstName;
     }
 
     /**
-     * @param DepartmentID the DepartmentID to set
+     * @param FirstName the FirstName to set
      */
-    public void setDepartmentID(int DepartmentID) {
-        this.DepartmentID = DepartmentID;
+    public void setFirstName(String FirstName) {
+        this.FirstName = FirstName;
     }
+    
 }

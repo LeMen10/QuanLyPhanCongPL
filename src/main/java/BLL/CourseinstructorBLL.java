@@ -3,9 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package BLL;
-import java.util.List;
+import java.util.ArrayList;
 import DAO.CourseIntructorDAO;
 import DTO.CourseinstructorDTO;
+import DTO.CourseDTO;
+import DTO.DepartmentDTO;
+import DTO.PersonDTO;
+import javax.swing.DefaultComboBoxModel;
 /**
  *
  * @author menvo
@@ -13,16 +17,51 @@ import DTO.CourseinstructorDTO;
 public class CourseinstructorBLL {
     private CourseIntructorDAO courseIntructorDAO;
 
+    public CourseinstructorBLL(){
+        courseIntructorDAO = new CourseIntructorDAO();
+    }
     public CourseinstructorBLL(CourseIntructorDAO courseIntructorDAO) {
         this.courseIntructorDAO = courseIntructorDAO;
     }
     
-    public List<CourseinstructorDTO> getAllCourseinstructor() {
+    public ArrayList<CourseinstructorDTO> getAllCourseinstructor() {
         return courseIntructorDAO.getAllCourseinstructor();
+    }
+    
+    public DefaultComboBoxModel<CourseDTO> getAllCourse() {
+        ArrayList<CourseDTO> list = courseIntructorDAO.getAllCourse();
+        DefaultComboBoxModel<CourseDTO> df = new DefaultComboBoxModel<>();
+        for(CourseDTO course: list){
+            df.addElement(course);
+        }
+        return df;
+    }
+    
+    public DefaultComboBoxModel<PersonDTO> getAllPerson() {
+        ArrayList<PersonDTO> list = courseIntructorDAO.getAllPerson();
+        DefaultComboBoxModel<PersonDTO> df = new DefaultComboBoxModel<>();
+        for(PersonDTO person: list){
+            df.addElement(person);
+        }
+        return df;
+    }
+    
+    public DefaultComboBoxModel<DepartmentDTO> getAllDepartment() {
+        ArrayList<DepartmentDTO> list = courseIntructorDAO.getAllDepartment();
+        DefaultComboBoxModel<DepartmentDTO> df = new DefaultComboBoxModel<>();
+        for(DepartmentDTO department: list){
+            df.addElement(department);
+        }
+        return df;
     }
 
     public void addStudent(CourseinstructorDTO courseIntructor) {
         // Các kiểm tra hợp lệ và logic kinh doanh khác trước khi thêm sinh viên
         courseIntructorDAO.addCourseinstructor(courseIntructor);
+    }
+    
+    public void editStudent(CourseinstructorDTO courseIntructor) {
+        // Các kiểm tra hợp lệ và logic kinh doanh khác trước khi thêm sinh viên
+        courseIntructorDAO.editCourseinstructor(courseIntructor);
     }
 }

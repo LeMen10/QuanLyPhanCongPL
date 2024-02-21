@@ -10,9 +10,9 @@ package DTO;
  */
 public class CourseDTO {
     private int CourseID;
-    private String Tite;
+    private String Title;
+    private int Credits;
     private int DepartmentID;
-    private int Creadits;
 
     /**
      * @return the CourseID
@@ -29,17 +29,31 @@ public class CourseDTO {
     }
 
     /**
-     * @return the Tite
+     * @return the Title
      */
-    public String getTite() {
-        return Tite;
+    public String getTitle() {
+        return Title;
     }
 
     /**
-     * @param Tite the Tite to set
+     * @param Title the Title to set
      */
-    public void setTite(String Tite) {
-        this.Tite = Tite;
+    public void setTitle(String Title) {
+        this.Title = Title;
+    }
+
+    /**
+     * @return the Credits
+     */
+    public int getCredits() {
+        return Credits;
+    }
+
+    /**
+     * @param Credits the Credits to set
+     */
+    public void setCredits(int Credits) {
+        this.Credits = Credits;
     }
 
     /**
@@ -55,18 +69,5 @@ public class CourseDTO {
     public void setDepartmentID(int DepartmentID) {
         this.DepartmentID = DepartmentID;
     }
-
-    /**
-     * @return the Creadits
-     */
-    public int getCreadits() {
-        return Creadits;
-    }
-
-    /**
-     * @param Creadits the Creadits to set
-     */
-    public void setCreadits(int Creadits) {
-        this.Creadits = Creadits;
-    }
+    
 }

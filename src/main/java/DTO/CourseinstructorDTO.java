@@ -12,6 +12,7 @@ package DTO;
 public class CourseinstructorDTO {
     private int PersonID;
     private int CourseID;
+    private String Title;
     private int DepartmentID;
 
     /**
@@ -54,5 +55,19 @@ public class CourseinstructorDTO {
      */
     public void setDepartmentID(int DepartmentID) {
         this.DepartmentID = DepartmentID;
+    }
+
+    /**
+     * @return the Title
+     */
+    public String getTitle() {
+        return Title;
+    }
+
+    /**
+     * @param Title the Title to set
+     */
+    public void setTitle(String Title) {
+        this.Title = Title;
     }
 }

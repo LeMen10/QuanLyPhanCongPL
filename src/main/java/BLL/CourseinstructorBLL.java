@@ -55,13 +55,21 @@ public class CourseinstructorBLL {
         return df;
     }
 
-    public void addStudent(CourseinstructorDTO courseIntructor) {
+    public void addCourseIntructor(CourseinstructorDTO courseIntructor) {
         // Các kiểm tra hợp lệ và logic kinh doanh khác trước khi thêm sinh viên
         courseIntructorDAO.addCourseinstructor(courseIntructor);
     }
     
-    public void editStudent(CourseinstructorDTO courseIntructor) {
+    public void editCourseIntructor(CourseinstructorDTO courseIntructor) {
         // Các kiểm tra hợp lệ và logic kinh doanh khác trước khi thêm sinh viên
         courseIntructorDAO.editCourseinstructor(courseIntructor);
+    }
+    
+    public void deleteCourseIntructorItem(CourseinstructorDTO courseIntructor) {
+        courseIntructorDAO.editCourseinstructor(courseIntructor);
+    }
+    
+    public ArrayList<CourseinstructorDTO> searchByCourseTitle(String text){
+        return courseIntructorDAO.searchByCourseTitle(text);
     }
 }

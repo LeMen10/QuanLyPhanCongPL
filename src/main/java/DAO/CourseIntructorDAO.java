@@ -28,7 +28,6 @@ public class CourseIntructorDAO {
     public CourseIntructorDAO() {
         try {
             this.connection = ConnectionManager.getConnection();
-            System.out.println("1");
         } catch (SQLException e) {
             // Xử lý lỗi kết nối
         }
@@ -37,7 +36,7 @@ public class CourseIntructorDAO {
     public ArrayList<CourseinstructorDTO> getAllCourseinstructor() {
         ArrayList<CourseinstructorDTO> courseinstructorLIST = new ArrayList<>();
         try {
-            String query = "SELECT c.PersonID, c.CourseID, cs.DepartmentID FROM courseinstructor c "
+            String query = "SELECT c.PersonID, c.CourseID, cs.DepartmentID, cs.Title FROM courseinstructor c "
                     + "INNER JOIN course cs WHERE cs.CourseID = c.CourseID";
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -45,6 +44,7 @@ public class CourseIntructorDAO {
                 CourseinstructorDTO c = new CourseinstructorDTO();
                 c.setPersonID(rs.getInt("PersonID"));
                 c.setCourseID(rs.getInt("CourseID"));
+                c.setTitle(rs.getString("Title"));
                 c.setDepartmentID(rs.getInt("DepartmentID"));
                 courseinstructorLIST.add(c);
             }
@@ -133,5 +133,36 @@ public class CourseIntructorDAO {
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
+    }
+    
+    public ArrayList<CourseinstructorDTO> searchByCourseTitle(String text) {
+        ArrayList<CourseinstructorDTO> courseinstructorLIST = new ArrayList<>();
+        try {
+            String query = "SELECT c.PersonID, c.CourseID, cs.DepartmentID, cs.Title "
+                    + "FROM courseinstructor c INNER JOIN course cs "
+                    + "WHERE cs.CourseID = c.CourseID AND Title LIKE '%"+ text +"%'";
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                CourseinstructorDTO c = new CourseinstructorDTO();
+                c.setPersonID(rs.getInt("PersonID"));
+                c.setCourseID(rs.getInt("CourseID"));
+                c.setTitle(rs.getString("Title"));
+                c.setDepartmentID(rs.getInt("DepartmentID"));
+                courseinstructorLIST.add(c);
+            }
+        } catch (SQLException e) {}
+
+        return courseinstructorLIST;
+    } 
+    
+    public void deleteCourseIntructorItem(int PersonID, int CourseID){
+        try {
+            String query = "UPDATE courseinstructor SET IsDeleted = 1"
+                    + "WHERE CourseID = "+ PersonID +" AND PersonID = " + CourseID;
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {}
+        } catch (SQLException e) {}
     }
 }

@@ -4,17 +4,66 @@
  */
 package GUI;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author menvo
  */
-public class GiaoDienThem extends javax.swing.JFrame {
+public class GiaoDienThem extends JFrame {
 
     /**
      * Creates new form GiaoDienThem
      */
     public GiaoDienThem() {
         initComponents();
+        
+        this.setLayout(null);
+        this.setTitle("Thêm");
+
+        
+        JLabel label1 = new JLabel("CourseID");
+        label1.setBounds(100, 50, 60, 40);
+        
+        String[] optionCourse = {"option 1", "option 2", "option 3"};
+        
+        JComboBox<String> comboBox1 = new JComboBox<>(optionCourse);
+        comboBox1.setBounds(200, 50, 100, 40);
+
+        
+        JLabel label2 = new JLabel("PersonID");
+        label2.setBounds(100, 120, 60, 40);
+        
+        String[] optionPerson = {"option 1", "option 2", "option 3"};
+        
+        JComboBox<String> comboBox2 = new JComboBox<>(optionPerson);
+        comboBox2.setBounds(200,120,100,40);
+
+        JButton btnOK = new JButton("OK");
+        btnOK.setBounds(200,200,100,40);
+        
+        this.add(label1);
+        this.add(comboBox1);
+        this.add(label2);
+        this.add(comboBox2);
+        this.add(btnOK);
+        
+        this.getContentPane().setBackground(new Color(220,220,220));
+        this.setSize(new Dimension(400,350));
+        this.setLocationRelativeTo(null);
+        
+
     }
 
     /**
@@ -25,70 +74,13 @@ public class GiaoDienThem extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
-
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Thêm");
         setPreferredSize(new java.awt.Dimension(500, 300));
 
-        java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
-        jPanel1Layout.columnWidths = new int[] {0, 16, 0, 16, 0, 16, 0, 16, 0};
-        jPanel1Layout.rowHeights = new int[] {0, 10, 0, 10, 0, 10, 0};
-        jPanel1.setLayout(jPanel1Layout);
-
-        jLabel1.setText("CourseID");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        jPanel1.add(jLabel1, gridBagConstraints);
-
-        jLabel2.setText("PersonID");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        jPanel1.add(jLabel2, gridBagConstraints);
-
-        jTextField1.setColumns(5);
-        jTextField1.setText("ID");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
-        jPanel1.add(jTextField1, gridBagConstraints);
-
-        jTextField2.setColumns(5);
-        jTextField2.setText("ID");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        jPanel1.add(jTextField2, gridBagConstraints);
-
-        jButton1.setText("OK");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 3;
-        jPanel1.add(jButton1, gridBagConstraints);
-
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,11 +118,5 @@ public class GiaoDienThem extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

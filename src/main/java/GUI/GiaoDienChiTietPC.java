@@ -34,14 +34,14 @@ public class GiaoDienChiTietPC extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chi tiết");
 
-        jButton2.setText("jButton2");
+        jButton2.setText("OK");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(397, Short.MAX_VALUE)
+                .addContainerGap(400, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(18, 18, 18))
         );
@@ -63,7 +63,7 @@ public class GiaoDienChiTietPC extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title", "Full Name", "Department Name", "Credits"
             }
         ));
         jTable2.setMinimumSize(new java.awt.Dimension(60, 10));

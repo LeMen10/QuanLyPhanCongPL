@@ -3,6 +3,7 @@
  */
 package com.mycompany.courseintructor;
 import GUI.GiaoDienDsPC;
+import GUI.GiaoDienThem;
 /**
  *
  * @author menvo
@@ -10,8 +11,12 @@ import GUI.GiaoDienDsPC;
 public class CourseIntructor {
     
     public static void main(String[] args) {
-        GiaoDienDsPC giaoDienDsPC = new GiaoDienDsPC();
-        giaoDienDsPC.setVisible(true);
+//        GiaoDienDsPC giaoDienDsPC = new GiaoDienDsPC();
+//        giaoDienDsPC.setVisible(true);
+
+           GiaoDienThem giaoDienThem = new GiaoDienThem();
+           giaoDienThem.setVisible(true);
+           
     }
     
 }

@@ -7,7 +7,14 @@ import BLL.CourseinstructorBLL;
 import javax.swing.table.DefaultTableModel;
 import GUI.GiaoDienSua;
 import DTO.CourseinstructorDTO;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 /**
  *
  * @author menvo
@@ -22,13 +29,73 @@ public final class GiaoDienDsPC extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         courseinstructorBLL = new CourseinstructorBLL();
+        loadData();
+        
+        jTable1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 1) {
+                    int selectedRow = jTable1.getSelectedRow();
+                    Object CourseID = jTable1.getValueAt(selectedRow, 0);
+                    Object PersonID = jTable1.getValueAt(selectedRow, 2);
+                    if (selectedRow != -1) {
+                        showEditDeleteDialog(CourseID, PersonID);
+                    }
+                }
+            }
+        });
+    }
+    
+    private void loadData(){
         list = courseinstructorBLL.getAllCourseinstructor();
         DefaultTableModel model = loadDataToTable(list);
         jTable1.setModel(model);
     }
     
+    private void showEditDeleteDialog(Object CourseID, Object PersonID) {
+        JFrame parentFrame = new JFrame();
+        Object[] options = {"Sửa", "Xóa", "Xem"};
+        int result = JOptionPane.showOptionDialog(parentFrame,
+                "Chọn tác vụ:",
+                "Tác vụ",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]);
+
+        // Xử lý kết quả từ dialog
+        switch (result) {
+            case 0:
+                editRow(CourseID, PersonID);
+                break;
+            case 1:
+                deleteRow(CourseID, PersonID);
+                break;
+            case 2:
+                detailRow(CourseID, PersonID);
+                break;
+        }
+    }
+    
+    private void editRow(Object CourseID, Object PersonID) {
+         System.out.println("haha");
+    }
+
+    private void deleteRow(Object CourseID, Object PersonID) {
+        courseinstructorBLL.deleteCourseIntructorItem(CourseID, PersonID);
+        loadData();
+    }
+    
+    private void detailRow(Object CourseID, Object PersonID) {
+        GiaoDienChiTietPC giaoDienChiTietPC = new GiaoDienChiTietPC();
+        giaoDienChiTietPC.value(CourseID, PersonID);
+        giaoDienChiTietPC.setVisible(true);
+        this.dispose();
+    }
+    
     private DefaultTableModel loadDataToTable(List list) {
-        String[] columnNames= {"CourseID", "Title", "PersonID", "DepartmentID", "Action"};
+        String[] columnNames= {"CourseID", "Title", "PersonID", "DepartmentID"};
         Object[][] data = new Object[list.size()][4];
         for(int i = 0; i < list.size(); i++){
             CourseinstructorDTO s = (CourseinstructorDTO) list.get(i);
@@ -105,13 +172,13 @@ public final class GiaoDienDsPC extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "CourseID", "Title", "PersonID", "Department", "Action"
+                "CourseID", "Title", "PersonID", "Department"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -135,8 +202,8 @@ public final class GiaoDienDsPC extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        GiaoDienSua giaoDienSua = new GiaoDienSua();
-        giaoDienSua.setVisible(true);
+        GiaoDienThem giaoDienThem = new GiaoDienThem();
+        giaoDienThem.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -148,4 +215,5 @@ public final class GiaoDienDsPC extends javax.swing.JFrame {
     public javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
 }

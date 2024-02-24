@@ -16,33 +16,31 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
+import BLL.CourseinstructorBLL;
+import DTO.CourseDTO;
 /**
  *
  * @author menvo
  */
 public class GiaoDienThem extends JFrame {
-
+    private CourseinstructorBLL courseinstructorBLL;
     /**
      * Creates new form GiaoDienThem
      */
     public GiaoDienThem() {
         initComponents();
-        
+        courseinstructorBLL = new CourseinstructorBLL();
         this.setLayout(null);
         this.setTitle("Thêm");
 
         
-        JLabel label1 = new JLabel("CourseID");
+        JLabel label1 = new JLabel("Course");
         label1.setBounds(100, 50, 60, 40);
         
-        String[] optionCourse = {"option 1", "option 2", "option 3"};
-        
-        JComboBox<String> comboBox1 = new JComboBox<>(optionCourse);
+        JComboBox<CourseDTO> comboBox1 = new JComboBox<>();
         comboBox1.setBounds(200, 50, 100, 40);
-
         
-        JLabel label2 = new JLabel("PersonID");
+        JLabel label2 = new JLabel("Person");
         label2.setBounds(100, 120, 60, 40);
         
         String[] optionPerson = {"option 1", "option 2", "option 3"};

@@ -37,7 +37,8 @@ public class CourseIntructorDAO {
         ArrayList<CourseinstructorDTO> courseinstructorLIST = new ArrayList<>();
         try {
             String query = "SELECT c.PersonID, c.CourseID, cs.DepartmentID, cs.Title FROM courseinstructor c "
-                    + "INNER JOIN course cs WHERE cs.CourseID = c.CourseID";
+                    + "JOIN course cs ON cs.CourseID = c.CourseID "
+                    + "Where c.IsDelete = 0";
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
@@ -54,6 +55,32 @@ public class CourseIntructorDAO {
         return courseinstructorLIST;
     }
 
+    public ArrayList<DetailDTO> getDetail(Object CourseID, Object PersonID) {
+        ArrayList<DetailDTO> detail = new ArrayList<>();
+        System.out.println("dao" + CourseID + PersonID);
+        try {
+            String query = "SELECT p.FirstName, p.LastName, d.Name, cs.Title, cs.Credits FROM courseinstructor c "
+                    + "JOIN course cs ON cs.CourseID = c.CourseID "
+                    + "JOIN person p ON p.PersonID = c.PersonID "
+                    + "JOIN department d ON d.DepartmentID = cs.DepartmentID "
+                    + "Where c.PersonID = " + PersonID + " AND c.CourseID = " + CourseID;
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                DetailDTO d = new DetailDTO();
+                d.setTitle(rs.getString("Title"));
+                d.setFirstName(rs.getString("FirstName"));
+                d.setLastname(rs.getString("LastName"));
+                d.setDepartmentName(rs.getString("Name"));
+                d.setCredits(rs.getInt("Credits"));
+                detail.add(d);
+            }
+        } catch (SQLException e) {
+        }
+
+        return detail;
+    }
+
     public void addCourseinstructor(CourseinstructorDTO courseinstructor) {
 //        try {
 //            String query = "INSERT INTO courseinstructor (PersionID, CourseID) VALUES (?, ?)";
@@ -66,7 +93,7 @@ public class CourseIntructorDAO {
 //            e.printStackTrace();
 //        }
     }
-    
+
     public ArrayList<CourseDTO> getAllCourse() {
         ArrayList<CourseDTO> courseLIST = new ArrayList<>();
         try {
@@ -81,11 +108,12 @@ public class CourseIntructorDAO {
                 c.setDepartmentID(rs.getInt("DepartmentID"));
                 courseLIST.add(c);
             }
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+        }
 
         return courseLIST;
     }
-    
+
     public ArrayList<PersonDTO> getAllPerson() {
         ArrayList<PersonDTO> personLIST = new ArrayList<>();
         try {
@@ -99,11 +127,12 @@ public class CourseIntructorDAO {
                 p.setLastname(rs.getString("Lastname"));
                 personLIST.add(p);
             }
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+        }
 
         return personLIST;
     }
-    
+
     public ArrayList<DepartmentDTO> getAllDepartment() {
         ArrayList<DepartmentDTO> departmentLIST = new ArrayList<>();
         try {
@@ -116,7 +145,8 @@ public class CourseIntructorDAO {
                 d.setName(rs.getString("Name"));
                 departmentLIST.add(d);
             }
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+        }
 
         return departmentLIST;
     }
@@ -134,13 +164,13 @@ public class CourseIntructorDAO {
 //            e.printStackTrace();
 //        }
     }
-    
+
     public ArrayList<CourseinstructorDTO> searchByCourseTitle(String text) {
         ArrayList<CourseinstructorDTO> courseinstructorLIST = new ArrayList<>();
         try {
             String query = "SELECT c.PersonID, c.CourseID, cs.DepartmentID, cs.Title "
                     + "FROM courseinstructor c INNER JOIN course cs "
-                    + "WHERE cs.CourseID = c.CourseID AND Title LIKE '%"+ text +"%'";
+                    + "WHERE cs.CourseID = c.CourseID AND Title LIKE '%" + text + "%'";
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
@@ -151,18 +181,19 @@ public class CourseIntructorDAO {
                 c.setDepartmentID(rs.getInt("DepartmentID"));
                 courseinstructorLIST.add(c);
             }
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+        }
 
         return courseinstructorLIST;
-    } 
-    
-    public void deleteCourseIntructorItem(int PersonID, int CourseID){
-        try {
-            String query = "UPDATE courseinstructor SET IsDeleted = 1"
-                    + "WHERE CourseID = "+ PersonID +" AND PersonID = " + CourseID;
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            while (rs.next()) {}
-        } catch (SQLException e) {}
+    }
+
+    public void deleteCourseIntructorItem(Object CourseID, Object PersonID) {
+        System.out.println(PersonID + "  " + CourseID);
+        String query = "UPDATE courseinstructor SET IsDelete = 1 "
+                + "WHERE CourseID = " + CourseID + " AND PersonID = " + PersonID;
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.executeUpdate();
+        } 
+        catch (SQLException e) {}
     }
 }

@@ -8,6 +8,7 @@ import DAO.CourseIntructorDAO;
 import DTO.CourseinstructorDTO;
 import DTO.CourseDTO;
 import DTO.DepartmentDTO;
+import DTO.DetailDTO;
 import DTO.PersonDTO;
 import javax.swing.DefaultComboBoxModel;
 /**
@@ -26,6 +27,10 @@ public class CourseinstructorBLL {
     
     public ArrayList<CourseinstructorDTO> getAllCourseinstructor() {
         return courseIntructorDAO.getAllCourseinstructor();
+    }
+    
+    public ArrayList<DetailDTO> getDetail(Object CourseID, Object PersonID) {
+        return courseIntructorDAO.getDetail(CourseID, PersonID);
     }
     
     public DefaultComboBoxModel<CourseDTO> getAllCourse() {
@@ -65,8 +70,8 @@ public class CourseinstructorBLL {
         courseIntructorDAO.editCourseinstructor(courseIntructor);
     }
     
-    public void deleteCourseIntructorItem(CourseinstructorDTO courseIntructor) {
-        courseIntructorDAO.editCourseinstructor(courseIntructor);
+    public void deleteCourseIntructorItem(Object CourseID, Object PersonID) {
+        courseIntructorDAO.deleteCourseIntructorItem(CourseID, PersonID);
     }
     
     public ArrayList<CourseinstructorDTO> searchByCourseTitle(String text){

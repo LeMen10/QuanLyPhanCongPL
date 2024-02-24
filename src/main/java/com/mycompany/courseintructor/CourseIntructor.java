@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 package com.mycompany.courseintructor;
+import GUI.GiaoDienChiTietPC;
 import GUI.GiaoDienDsPC;
 import GUI.GiaoDienThem;
 /**
@@ -11,11 +12,11 @@ import GUI.GiaoDienThem;
 public class CourseIntructor {
     
     public static void main(String[] args) {
-//        GiaoDienDsPC giaoDienDsPC = new GiaoDienDsPC();
-//        giaoDienDsPC.setVisible(true);
+        GiaoDienDsPC giaoDienDsPC = new GiaoDienDsPC();
+        giaoDienDsPC.setVisible(true);
 
-           GiaoDienThem giaoDienThem = new GiaoDienThem();
-           giaoDienThem.setVisible(true);
+//           GiaoDienChiTietPC giaoDienThem = new GiaoDienChiTietPC();
+//           giaoDienThem.setVisible(true);
            
     }
     

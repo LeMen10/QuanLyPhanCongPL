@@ -13,11 +13,9 @@ public class DetailDTO {
     private String Lastname;
     private String Title;
     private String DepartmentName;
-    private String Credits;
+    private int Credits;
 
-    /**
-     * @return the FirstName
-     */
+
     public String getFirstName() {
         return FirstName;
     }
@@ -29,16 +27,11 @@ public class DetailDTO {
         this.FirstName = FirstName;
     }
 
-    /**
-     * @return the Lastname
-     */
     public String getLastname() {
         return Lastname;
     }
 
-    /**
-     * @param Lastname the Lastname to set
-     */
+
     public void setLastname(String Lastname) {
         this.Lastname = Lastname;
     }
@@ -50,9 +43,6 @@ public class DetailDTO {
         return Title;
     }
 
-    /**
-     * @param Title the Title to set
-     */
     public void setTitle(String Title) {
         this.Title = Title;
     }
@@ -74,14 +64,14 @@ public class DetailDTO {
     /**
      * @return the Credits
      */
-    public String getCredits() {
+    public int getCredits() {
         return Credits;
     }
 
     /**
      * @param Credits the Credits to set
      */
-    public void setCredits(String Credits) {
+    public void setCredits(int Credits) {
         this.Credits = Credits;
     }
     

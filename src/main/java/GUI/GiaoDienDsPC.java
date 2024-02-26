@@ -79,7 +79,10 @@ public final class GiaoDienDsPC extends javax.swing.JFrame {
     }
     
     private void editRow(Object CourseID, Object PersonID) {
-         System.out.println("haha");
+        GiaoDienSua giaoDienSua = new GiaoDienSua();
+        giaoDienSua.ValuePrev(CourseID, PersonID);
+        giaoDienSua.setVisible(true);
+        this.dispose();
     }
 
     private void deleteRow(Object CourseID, Object PersonID) {
@@ -89,7 +92,7 @@ public final class GiaoDienDsPC extends javax.swing.JFrame {
     
     private void detailRow(Object CourseID, Object PersonID) {
         GiaoDienChiTietPC giaoDienChiTietPC = new GiaoDienChiTietPC();
-        giaoDienChiTietPC.value(CourseID, PersonID);
+        giaoDienChiTietPC.ValuePrev(CourseID, PersonID);
         giaoDienChiTietPC.setVisible(true);
         this.dispose();
     }

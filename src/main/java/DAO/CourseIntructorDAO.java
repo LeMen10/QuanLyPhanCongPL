@@ -81,23 +81,19 @@ public class CourseIntructorDAO {
         return detail;
     }
 
-    public void addCourseinstructor(CourseinstructorDTO courseinstructor) {
-//        try {
-//            String query = "INSERT INTO courseinstructor (PersionID, CourseID) VALUES (?, ?)";
-//            try (Statement statement = connection.createStatement(query)) {
-//                preparedStatement.setInt(1, courseinstructor.getPersonID());
-//                preparedStatement.setInt(2, courseinstructor.getCourseID());
-//                preparedStatement.executeUpdate();
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+    public void addCourseinstructor(int CourseID, int PersonID) {
+        String query = "INSERT INTO courseinstructor (CourseID, PersonID) VALUES (" + CourseID + ", " + PersonID + ")";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+        }
     }
 
     public ArrayList<CourseDTO> getAllCourse() {
         ArrayList<CourseDTO> courseLIST = new ArrayList<>();
         try {
-            String query = "SELECT * FROM course";
+            String query = "SELECT c.CourseID, c.Title, c.Credits, c.DepartmentID FROM course c";
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
@@ -110,16 +106,16 @@ public class CourseIntructorDAO {
             }
         } catch (SQLException e) {
         }
-
         return courseLIST;
     }
 
     public ArrayList<PersonDTO> getAllPerson() {
         ArrayList<PersonDTO> personLIST = new ArrayList<>();
         try {
-            String query = "SELECT * FROM person";
+            String query = "SELECT p.PersonID, p.Firstname, p.Lastname FROM person p";
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
+            System.out.println(rs);
             while (rs.next()) {
                 PersonDTO p = new PersonDTO();
                 p.setPersonID(rs.getInt("PersonID"));
@@ -136,7 +132,7 @@ public class CourseIntructorDAO {
     public ArrayList<DepartmentDTO> getAllDepartment() {
         ArrayList<DepartmentDTO> departmentLIST = new ArrayList<>();
         try {
-            String query = "SELECT * FROM person";
+            String query = "SELECT d.DepartmentID, d.Name FROM department d";
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
@@ -151,18 +147,23 @@ public class CourseIntructorDAO {
         return departmentLIST;
     }
 
-    public void editCourseinstructor(CourseinstructorDTO courseinstructor) {
-//        try {
-//            String query = "UPDATE courseinstructor c SET PersonID = ?, CourseID = ? Where PersonID ? AND CourseID = ?";
-//            
-//            PreparedStatement preparedstatement = connection.prepareStatement(query);
-//            rs.setInt(1, courseinstructor.getPersonID()));
-//            rs.setInt(2, courseinstructor.getCourseID());
-//            rs.executeUpdate();
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+    public void editCourseinstructor(int CourseID, int PersonID, int DepartmentID, 
+            Object CourseIdRepair, Object PersonIdRepair ) {
+        try {
+            String query = "UPDATE courseinstructor SET CourseID = "+ CourseID +", PersonID = "+ PersonID
+                    + " Where PersonID = " + PersonIdRepair +" AND CourseID = "+ CourseIdRepair;
+            System.out.println(query);
+            String updateDepartment = "UPDATE course SET DepartmentID = "+ DepartmentID
+                    + " Where CourseID = "+ CourseIdRepair;
+            System.out.println(updateDepartment);
+//            PreparedStatement statement1 = connection.prepareStatement(updateDepartment);
+            PreparedStatement statement2 = connection.prepareStatement(query);
+            
+//            statement1.executeUpdate();
+            statement2.executeUpdate();
+
+        } catch (SQLException e) {
+        }
     }
 
     public ArrayList<CourseinstructorDTO> searchByCourseTitle(String text) {
@@ -188,12 +189,12 @@ public class CourseIntructorDAO {
     }
 
     public void deleteCourseIntructorItem(Object CourseID, Object PersonID) {
-        System.out.println(PersonID + "  " + CourseID);
         String query = "UPDATE courseinstructor SET IsDelete = 1 "
                 + "WHERE CourseID = " + CourseID + " AND PersonID = " + PersonID;
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.executeUpdate();
-        } 
-        catch (SQLException e) {}
+        } catch (SQLException e) {
+        }
     }
 }

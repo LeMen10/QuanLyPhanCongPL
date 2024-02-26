@@ -10,7 +10,6 @@ import DTO.CourseDTO;
 import DTO.DepartmentDTO;
 import DTO.DetailDTO;
 import DTO.PersonDTO;
-import javax.swing.DefaultComboBoxModel;
 /**
  *
  * @author menvo
@@ -33,41 +32,34 @@ public class CourseinstructorBLL {
         return courseIntructorDAO.getDetail(CourseID, PersonID);
     }
     
-    public DefaultComboBoxModel<CourseDTO> getAllCourse() {
-        ArrayList<CourseDTO> list = courseIntructorDAO.getAllCourse();
-        DefaultComboBoxModel<CourseDTO> df = new DefaultComboBoxModel<>();
-        for(CourseDTO course: list){
-            df.addElement(course);
-        }
-        return df;
+    public ArrayList<CourseDTO> getAllCourse(){
+        return courseIntructorDAO.getAllCourse();
     }
     
-    public DefaultComboBoxModel<PersonDTO> getAllPerson() {
-        ArrayList<PersonDTO> list = courseIntructorDAO.getAllPerson();
-        DefaultComboBoxModel<PersonDTO> df = new DefaultComboBoxModel<>();
-        for(PersonDTO person: list){
-            df.addElement(person);
-        }
-        return df;
+//    public DefaultComboBoxModel<CourseDTO> getAllCourse() {
+//        ArrayList<CourseDTO> list = courseIntructorDAO.getAllCourse();
+//        DefaultComboBoxModel<CourseDTO> df = new DefaultComboBoxModel<>();
+//        for(CourseDTO course: list){
+//            df.addElement(course);
+//        }
+//        return df;
+//    }
+    
+    public ArrayList<PersonDTO> getAllPerson() {
+        return courseIntructorDAO.getAllPerson();
     }
     
-    public DefaultComboBoxModel<DepartmentDTO> getAllDepartment() {
-        ArrayList<DepartmentDTO> list = courseIntructorDAO.getAllDepartment();
-        DefaultComboBoxModel<DepartmentDTO> df = new DefaultComboBoxModel<>();
-        for(DepartmentDTO department: list){
-            df.addElement(department);
-        }
-        return df;
+    public ArrayList<DepartmentDTO> getAllDepartment() {
+        return courseIntructorDAO.getAllDepartment();
     }
 
-    public void addCourseIntructor(CourseinstructorDTO courseIntructor) {
-        // Các kiểm tra hợp lệ và logic kinh doanh khác trước khi thêm sinh viên
-        courseIntructorDAO.addCourseinstructor(courseIntructor);
+    public void addCourseIntructor(int CourseID, int PersonID) {
+        courseIntructorDAO.addCourseinstructor(CourseID, PersonID);
     }
     
-    public void editCourseIntructor(CourseinstructorDTO courseIntructor) {
-        // Các kiểm tra hợp lệ và logic kinh doanh khác trước khi thêm sinh viên
-        courseIntructorDAO.editCourseinstructor(courseIntructor);
+    public void editCourseIntructor(int CourseID, int PersonID, int DepartmentID, 
+            Object CourseIdRepair, Object PersonIdRepair) {
+        courseIntructorDAO.editCourseinstructor(CourseID, PersonID, DepartmentID, CourseIdRepair, PersonIdRepair);
     }
     
     public void deleteCourseIntructorItem(Object CourseID, Object PersonID) {

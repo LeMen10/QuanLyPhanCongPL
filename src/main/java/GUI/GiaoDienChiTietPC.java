@@ -24,7 +24,7 @@ public final class GiaoDienChiTietPC extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     
-    public void value(Object CourseID, Object PersonID){
+    public void ValuePrev(Object CourseID, Object PersonID){
         this.CourseID = CourseID;
         this.PersonID = PersonID;
         courseinstructorBLL = new CourseinstructorBLL();

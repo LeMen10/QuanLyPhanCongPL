@@ -4,6 +4,7 @@
 package com.mycompany.courseintructor;
 import GUI.GiaoDienChiTietPC;
 import GUI.GiaoDienDsPC;
+import GUI.GiaoDienSua;
 import GUI.GiaoDienThem;
 /**
  *
@@ -15,7 +16,7 @@ public class CourseIntructor {
         GiaoDienDsPC giaoDienDsPC = new GiaoDienDsPC();
         giaoDienDsPC.setVisible(true);
 
-//           GiaoDienChiTietPC giaoDienThem = new GiaoDienChiTietPC();
+//           GiaoDienSua giaoDienThem = new GiaoDienSua();
 //           giaoDienThem.setVisible(true);
            
     }
